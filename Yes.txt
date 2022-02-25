@@ -1,0 +1,50 @@
+import self as self
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+from time import sleep
+from selenium import webdriver
+
+driver = webdriver.Chrome("C:\Program Files (x86)\chromedriver.exe")
+driver.get("https://paidlikes.de/email-login?action=signin")
+assert "Paidlikes" in driver.title
+elem = driver.find_element_by_name("email")
+elem_two = driver.find_element_by_name("password")
+
+email = "xsamizerfaouix@gmail.com"
+elem.clear()
+elem.send_keys(email)
+
+time.sleep(1)
+
+pw = "Sa28072005."
+elem_two.send_keys(pw)
+elem.send_keys(Keys.RETURN)
+
+driver.get('https://paidlikes.de/memberarea/likes_insta_campaigns')
+
+time.sleep(2)
+
+driver.find_element_by_xpath("/html/body/div[4]/div/div[2]/div/div/div[1]/div[2]/div[1]/div/div[2]/span[2][contains(.,'Alle ')]").click()
+
+time.sleep(6.5)
+
+driver.get("https://www.instagram.com/")
+
+time.sleep(1)
+user = driver.find_element_by_name('username')
+user.clear()
+user.send_keys(email)
+
+pw_two = driver.find_element_by_name('password')
+pw_two.send_keys(pw)
+
+driver.sendkeys(Keys.RETURN)
+
+
+
+print("Done!")
+assert "No results found." not in driver.page_source
